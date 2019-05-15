@@ -1,0 +1,10 @@
+Para curarte de una extraña enfermedad que con seguridad acabará con tu vida en la próxima semana,
+los médicos te piden que renuncies a uno de estos sentidos. ¿Cuál escoges?:
+
+A. La vista.
+
+B. El tacto.
+
+C. El oído.
+
+D. El gusto.
