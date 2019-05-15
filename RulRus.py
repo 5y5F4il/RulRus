@@ -2,14 +2,20 @@ from random import randint
 import os
 direct = os.path.join(os.getcwd(),'tarjetas')
 os.chdir(direct)
+print("")
 print("Bienvendio al Situación Límite 2.0")
+print("")
 print("Nota para Leo: La versión 1.0 es la de cartón. Besos!")
+print("")
 y = "y"
 segMaz = ""
 players = []
 puntos = []
 tarjUsad = []
-numTarj = 4
+cantTarj = len(os.listdir(".")) #Cantidad real de tarjetas en juego (cuenta la cant de archivos en directorio de las tarjetas)
+numTarj = len(os.listdir("."))-1 #Cuenta la cantidad de archivos menos uno (para que el rand no se exceda en la numeracion de elementos)
+print("Cantidad de tarjetas en juego: %s" %cantTarj)
+print("")
 numPlay = input("Indique el número de jugadores:")
 print("")
 numPlay = int(numPlay)
