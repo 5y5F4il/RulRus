@@ -3,9 +3,9 @@ import os
 direct_tarj = os.path.join(os.getcwd(),'tarjetas')
 os.chdir(direct_tarj)
 print("")
-print("Bienvendio al Situación Límite 2.0")
+print("Bienvendio a RulRus!")
 print("")
-print("Nota para Leo: La versión 1.0 es la de cartón. Besos!")
+print("Proximamente un buen logo aquí!")
 print("")
 y = "y"
 segMaz = ""
