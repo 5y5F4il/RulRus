@@ -1,7 +1,7 @@
 from random import randint
 import os
-direct = os.path.join(os.getcwd(),'tarjetas')
-os.chdir(direct)
+direct_tarj = os.path.join(os.getcwd(),'tarjetas')
+os.chdir(direct_tarj)
 print("")
 print("Bienvendio al Situación Límite 2.0")
 print("")
@@ -12,21 +12,20 @@ segMaz = ""
 players = []
 puntos = []
 tarjUsad = []
-cantTarj = len(os.listdir(".")) #Cantidad real de tarjetas en juego (cuenta la cant de archivos en directorio de las tarjetas)
-numTarj = len(os.listdir("."))-1 #Cuenta la cantidad de archivos menos uno (para que el rand no se exceda en la numeracion de elementos)
-print("Cantidad de tarjetas en juego: %s" %cantTarj)
+numTarj = len(os.listdir("."))
+print("Cantidad de tarjetas en juego: %s" %numTarj)
 print("")
 numPlay = input("Indique el número de jugadores:")
 print("")
 numPlay = int(numPlay)
-for x in range(0,numPlay): #Lectura de jugadores y asignacion de vector de puntos
+for x in range(numPlay): #Lectura de jugadores y asignacion de vector de puntos
     print("Jugador", x+1)
     a = input("->")
     print("")
     players = players + [a]
     puntos.append(0)
 while y == "y":
-    for x in range(0,numPlay):
+    for x in range(numPlay):
         ran = randint(0,numTarj)
         while ran in tarjUsad: #chequeo de tarjeta usada
             ran = randint(0, numTarj)
@@ -45,7 +44,7 @@ while y == "y":
         print("")
         print("Turno de", players[x])
         print("")
-        f = open("%s/t%s.txt" %(direct,ran), "r")
+        f = open("%s/t%s.txt" %(direct_tarj,ran), "r")
         print(f.read())
         f.close()
         print("")
@@ -65,18 +64,18 @@ while y == "y":
                 print("")
                 if ran not in tarjUsad:
                     tarjUsad.append(ran)
-                    f = open("%s/t%s.txt" %(direct,ran), "r")
+                    f = open("%s/t%s.txt" %(direct_tarj,ran), "r")
                     print(f.read())
                     f.close()
                     print("")
                     tarjRep = input("¿Acaso ya te tocó esta tarjeta? (y/n)")
                     print("")
-        for x in range(0, numPlay):
+        for x in range(numPlay):
             print("Puntos generados por", players[x]) #Pedido de puntos por jugador
-            p = int(input("->"))
-            a = int(puntos[x])
-            p = a+p
-            puntos[x] = p
+            puntos_ronda = int(input("->"))
+            puntos_totales = int(puntos[x])
+            nuevos_puntos_totales = puntos_totales + puntos_ronda
+            puntos[x] = nuevos_puntos_totales
     print("")
     print("Los puntos de esta ronda son los siguientes:")
     for x in range(0, numPlay):
