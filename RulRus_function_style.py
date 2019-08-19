@@ -3,7 +3,7 @@
 from random import randint
 import os
 
-def numeros_y_nombres_players(players, numPlay):
+def numeros_y_nombres_players(players, numPlay, puntos):
     for x in range(numPlay): #Lectura de jugadores y asignacion de vector de puntos
         print("Jugador", x+1)
         a = input("->")
@@ -13,7 +13,7 @@ def numeros_y_nombres_players(players, numPlay):
     return players, puntos
 
 
-def print_card(turn):
+def print_card(turn, players, direct_tarj, ran):
     if turn == 1:
         print("")
         print("Turno de", players[x])
@@ -32,7 +32,7 @@ def print_save_players_points():
     return nuevos_puntos_totales
 
 
-def check_maso(tarjUsad):
+def check_maso(tarjUsad, numTarj):
     if len(tarjUsad) == numTarj:
         print("")
         print("Ya se usaron todas las tarjetas!")
@@ -49,10 +49,10 @@ def check_maso(tarjUsad):
     return segMaz, tarjUsad
 
 
-def check_tarj_usada(tarjUsad, tarjRep):
+def check_tarj_usada(ran, tarjUsad, tarjRep):
     if ran not in tarjUsad:
         tarjUsad.append(ran)      
-        print_card(0)
+        print_card(0, players, direct_tarj, ran)
         tarjRep = input("¿Acaso ya te tocó esta tarjeta? (y/n)")
         print("")
     return tarjUsad, tarjRep
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     print("")
     numPlay = int(numPlay)
 
-    players, puntos = numeros_y_nombres_players(players, numPlay)
+    players, puntos = numeros_y_nombres_players(players, numPlay, puntos)
 
     while y == "y":
 
@@ -106,11 +106,11 @@ if __name__ == "__main__":
             while ran in tarjUsad: #chequeo de tarjeta usada
 
                 ran = randint(0, numTarj-1)
-                segMaz, tarjUsad = check_maso(tarjUsad)
+                segMaz, tarjUsad = check_maso(tarjUsad, numTarj)
             
             tarjUsad.append(ran) #Agregar tarjeta usada a la lista de usados      
             
-            print_card(1)           
+            print_card(1, players, direct_tarj, ran)           
             
             if segMaz == "y": #Si ya se barajo chequear si ya salio la tarjeta al jugador
 
@@ -118,9 +118,9 @@ if __name__ == "__main__":
                 while tarjRep == "y":
 
                     ran = randint(0,numTarj-1)
-                    segMaz, tarjUsad = check_maso(tarjUsad)
+                    segMaz, tarjUsad = check_maso(tarjUsad, numTarj)
 
-                    tarjUsad, tarjRep = check_tarj_usada(tarjUsad, tarjRep)
+                    tarjUsad, tarjRep = check_tarj_usada(ran, tarjUsad, tarjRep)
             
             for x in range(numPlay):
                 puntos[x] = print_save_players_points()
